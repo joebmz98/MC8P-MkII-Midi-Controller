@@ -20,8 +20,8 @@ A customizable, open-source MIDI controller with **8 potentiometers**, each supp
 - **CD74HC4067M** analog multiplexer for the 8 potentiometers
 - **SSD1306 I2C OLED (128x64)** for the UI
 - **Per-Pot CC Assignment** – Each pot can send **10 different MIDI CCs**
-- **3.5mm MIDI TRS Out** (PJ307 socket for Type A MIDI)
-- **4x Kailh Switches** for UI navigation/configuration
+- **3.5mm MIDI TRS Out** (Type A MIDI)
+- **4x Cherry MX-compatible switches** (Kailh etc.) for UI navigation/configuration
 - **W25Q64 SPI Flash** for settings storage
 - **5V DC Jack Input** (centre positive) or USB power
 - **Standalone Operation** – No computer needed after setup
@@ -35,25 +35,43 @@ A customizable, open-source MIDI controller with **8 potentiometers**, each supp
 
 ## **Bill of Materials (BOM)**
 
-| Component                  | Qty | Notes                          | Links |
-|----------------------------|-----|--------------------------------|-------|
-| STM32F411CEU6 BlackPill    | 1   | Main microcontroller           | — |
-| SSD1306 OLED (128×64)      | 1   | I²C interface                  | [AliExpress](https://www.aliexpress.com/item/1005006997755041.html) |
-| CD74HC4067M                | 1   | 16-channel analog multiplexer  | — |
-| W25Q64 / W24Q64 SPI Flash Memory | 1 | SPI settings storage; firmware references W25Q64 | — |
-| B100K Vertical Potentiometer | 8  | Linear taper                   | [Example](https://shorturl.at/ZGaz2) |
-| 3.5mm Stereo Socket (PJ307) | 1  | MIDI TRS Type A                | [Example](https://shorturl.at/lp2T3) |
-| Kailh Switches             | 4   | For menu navigation            | —     |
-| Kailh Switch Caps          | 4   | For Kailh switches             | [AliExpress](https://www.aliexpress.com/item/1005006477890497.html) |
-| Potentiometer Knobs        | 8   | For B100K potentiometers       | [AliExpress](https://www.aliexpress.com/item/1005006064249289.html) |
-| DC-005 Barrel Jack Socket  | 1   | 5V DC power input, centre positive | [AliExpress](https://www.aliexpress.com/item/32839712664.html) |
-| 10nF Ceramic Capacitors    | 8   | Potentiometer filtering        | —     |
-| 10k Resistors              | 4   | Pull-down for buttons          | —     |
-| 220Ω Resistors             | 2   | For MIDI Circuitry             | —     |
-| 100nF Ceramic Capacitor    | 1   | Power rail stabilisation       | —     |
-| 10uF Ceramic Capacitor     | 1   | Power rail stabilisation       | —     |
-| 10uF Electrolytic Capacitor| 1   | 5V input stability             | —     |
-| 100uF Electrolytic Capacitor | 1 | Power rail stabilisation       | —     |
+| Designator | Component | Qty | Footprint / Notes |
+|---|---|---|---|
+| U1 | **STM32F411CEU6 BlackPill** | 1 | Main microcontroller |
+| U3 | **CD74HC4067M** | 1 | 16-channel analog multiplexer, SOIC-24W |
+| U4 | **W25Q64 SPI Flash** | 1 | SOIC-8, settings storage |
+| SSD1306 | **SSD1306 OLED (128×64)** | 1 | I²C interface |
+| RV1–RV8 | **B100K potentiometers** | 8 | `Potentiometer_RV09_BigPads`, linear taper |
+| J1 | **3.5mm stereo jack** | 1 | `Jack_3.5mm_CUI_SJ1-3525N` (PJ307-compatible), MIDI TRS Type A |
+| J2 | **DC barrel jack** | 1 | `BarrelJack_GCT_DCJ200-10-A`, 5V DC, centre positive |
+| SW1–SW4 | **Cherry MX-compatible switches** | 4 | `SW_Cherry_MX_1.00u_PCB` — ASSIGN / ENTER / PREV / NEXT |
+| — | **Cherry MX-compatible switch caps** | 4 | For SW1–SW4 |
+| — | **Potentiometer knobs** | 8 | For RV1–RV8 |
+| R1–R4 | **10k resistors** | 4 | 0603, button pull-downs |
+| R5–R6 | **220Ω resistors** | 2 | 0603, MIDI circuitry |
+| R7–R8 | **10k resistors** | 2 | 0603 footprint (value field reads `10k_0402`) |
+| C9, C12–C15 | **100nF capacitors** | 5 | 1206 (C12–C15 rated 16V) |
+| C10, C16 | **10uF capacitors** | 2 | 1206 |
+| C11 | **100uF electrolytic capacitor** | 1 | Radial D4.0mm, P1.50mm |
+| C1–C8 | **Generic 1206 capacitors** | 8 | `C_Generic` — value not specified in BOM (see build guide) |
+| D1 | **LED** | 1 | 1206 |
+| D2 | **BAT43 diode** | 1 | SOD-123 |
+
+**Footnotes**
+- The BOM also lists 9 unassigned designators (`_2`–`_9`) with no footprint or value; these are almost certainly PCB mounting/test pads.
+- C1–C8 are the pot-filtering positions; the previous README specified 10nF — confirm the actual fitted value against the Rev 3 schematic/build guide.
+- Kailh switches and caps are Cherry MX-compatible and fit the `SW_Cherry_MX_1.00u_PCB` footprint, so the original Kailh sourcing links can still be used.
+
+**Common sourcing links**
+
+| Part | Link |
+|---|---|
+| SSD1306 OLED (128×64) | [AliExpress](https://www.aliexpress.com/item/1005006997755041.html) |
+| B100K Potentiometer | [Example](https://shorturl.at/ZGaz2) |
+| 3.5mm MIDI Socket (PJ307) | [Example](https://shorturl.at/lp2T3) |
+| Switch Caps | [AliExpress](https://www.aliexpress.com/item/1005006477890497.html) |
+| Potentiometer Knobs | [AliExpress](https://www.aliexpress.com/item/1005006064249289.html) |
+| 5V DC Barrel Jack | [AliExpress](https://www.aliexpress.com/item/32839712664.html) |
 
 ---
 
@@ -66,7 +84,7 @@ A customizable, open-source MIDI controller with **8 potentiometers**, each supp
 
 ## **Installation & Setup**
 ### **1. Flashing the Firmware**
-- Easiest method: use the **WebFlasher**  
+- Easiest method: use the **WebFlasher**
   https://joebmz98.github.io/MC8P-MkII-Flasher/
 - Alternatively, install **Arduino IDE + STM32duino/STM32F4 core** and the dependencies referenced in the Building from Source section
 - Clone this repo and open the `.ino` file in the Arduino IDE
@@ -77,7 +95,7 @@ A customizable, open-source MIDI controller with **8 potentiometers**, each supp
 - Refer to the *Build Guide*
 
 ### **3. First Boot**
-- Power via **USB** on the BlackPill or via the **DC-005 5V DC input jack** (centre positive)
+- Power via **USB** on the BlackPill or via the **DC barrel jack** (5V DC, centre positive)
 - Use the **OLED menu** to assign CCs, configure scenes, and adjust display settings
 
 ---
@@ -236,11 +254,3 @@ When saving changes or performing a factory reset, a popup screen appears asking
 - **Custom Requests:** Start a thread in the discussions page or send me an E-mail! axs.instruments@gmail.com
 - **Want to improve it?** PRs welcome!
 - **Special Thanks:** This project is supported by **PCBWay** who have kindly provided the PCB stock available at the moment
-
----
-
-## **Acknowledgments**
-
-PCBway very kindly offered to sponsor this project and have sent me some more stock for the shop. Thank you to PCBway for supporting this passion project of mine. Emily from the marketing department reached out to me when I first launched the product and store and very kindly offered to sponsor the project. Both working with them and using their services was really easy. All I needed to do was export my PCB gerber files, drag and drop them on the 'PCB Instant Quote' page and send it off for approval. I received my order a week later and was very happy with the quality of the PCBs. Thank you again PCBway for your support.
-
-You can find their website here: https://www.pcbway.com/
