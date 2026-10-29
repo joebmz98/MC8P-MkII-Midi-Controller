@@ -11,7 +11,7 @@ A customizable, open-source MIDI controller with **8 potentiometers**, each supp
 ---
 ## Update the firmware
 
-### ➜ [MC8P MkII Web Flasher](https://joebmz98.github.io/MC8P-MkII-Flasher/)
+### ➜ [MC8P MkII Web Flasher & Editor](https://joebmz98.github.io/MC8P-MkII-Flasher/)
 
 ---
 ## Introducing the MC8P Video
