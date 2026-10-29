@@ -106,7 +106,7 @@ MIDI_CREATE_INSTANCE(Adafruit_USBD_MIDI, usb_midi, MIDI_USB);
 #define FLASH_GLOBAL_START_ADDR 4096  // Start address for global settings (4KB alignment)
 
 // -- FIRMWARE VERSION --
-const char* FIRMWARE_VERSION = "3.0";
+const char* FIRMWARE_VERSION = "3.1";
 
 // CC MESSAGE DIRECTION/CURVE
 enum CurveType {
@@ -482,8 +482,8 @@ void setup() {
   }
 
   // POWER LED
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+  pinMode(PC13, OUTPUT);
+  digitalWrite(PC13, HIGH);
 
   // Initialize SPI Flash
   initFlash();
@@ -4448,7 +4448,8 @@ void drawAboutScreen() {
   display.print("8 pot open-source");
 
   display.setCursor(41, 25);
-  display.print("firmware v2.1");
+  display.print("firmware v");
+  display.print(FIRMWARE_VERSION);
 
   display.setCursor(34, 57);
   display.print(".axs instruments");
