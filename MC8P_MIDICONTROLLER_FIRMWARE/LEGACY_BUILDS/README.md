@@ -2,7 +2,7 @@
 
 Older MC8P firmware builds, kept for reference and for rolling back. The
 current release is the build in `MC8P_MIDICONTROLLER_FIRMWARE_STM/build/`,
-which is what the [web flasher](https://joebmz98.github.io/MC8P-MkII-Flasher/)'s
+the same build the [web flasher](https://joebmz98.github.io/MC8P-MkII-Flasher/)'s
 **Latest release** option flashes.
 
 To flash one of these, open the web flasher, choose **Custom file**
