@@ -1,0 +1,82 @@
+# ---------------------------------------------------------------
+# MC8P MkII - .gitignore
+# ---------------------------------------------------------------
+
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# --- Windows / Linux ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+.directory
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+
+# --- Arduino / STM32 firmware build ---
+# Intermediate build products (never needed in the repo)
+*.o
+*.d
+*.a
+*.su
+*.lst
+*.elf
+*.map
+# PlatformIO, if ever used
+.pio/
+# Arduino CLI / IDE temp build folders
+**/build/**/sketch/
+**/build/**/libraries/
+**/build/**/core/
+# NOTE: exported .bin/.hex files are kept on purpose (web flasher and
+# LEGACY_BUILDS use them). If you'd rather not track the Arduino
+# "Export compiled binary" output, uncomment the next line:
+# MC8P_MIDICONTROLLER_FIRMWARE/MC8P_MIDICONTROLLER_FIRMWARE_STM/build/
+
+# --- KiCad ---
+# Auto backups (KiCad 6+)
+*-backups/
+# Lock files and caches
+*.lck
+~*.lck
+\#auto_saved_files#
+_autosave-*
+fp-info-cache
+*.kicad_prl
+*-bak
+*.bak
+*.bck
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.sch-bak
+# Generated netlist / ERC / DRC reports
+*.erc
+*.rpt
+*-drc.rpt
+*-erc.rpt
+
+# --- SketchUp ---
+*.skb
+*~.skp
+
+# --- Fusion / misc CAD temp ---
+*.tmp
+
+# --- Archives you don't want committed by accident ---
+# (picopixel.zip and the Teensy CAD zip are already tracked; add
+# specific ones here if needed)
+
+# --- Node (in case of web tooling) ---
+node_modules/
+npm-debug.log*
